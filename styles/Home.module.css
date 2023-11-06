@@ -1,0 +1,147 @@
+/* .globals {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.connect_button {
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: 0 5px 10px #0000004d;
+  background-color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 19vh;
+}
+
+.chain_button, .account_button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: bolder;
+  background-color: white;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px #0000004d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 2vh;
+}
+
+.connect_button:hover, .chain_button:hover, .account_button:hover {
+  box-shadow: 0 5px 5px #00000080;
+}
+
+.account_button {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 2px;
+}
+
+.account {
+  height: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background-color: #0000001a;
+  padding: 0 8px;
+  border-radius: 10px;
+}
+
+.buy_button {
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: 0 5px 10px #0000004d;
+  background-color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 19vh;
+} */
+
+.globals {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.connect_button {
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: 0 5px 10px #0000004d;
+  background-color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 19vh;
+}
+
+.chain_button, .account_button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: bolder;
+  background-color: white;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px #0000004d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 2vh;
+}
+
+.connect_button:hover, .chain_button:hover, .account_button:hover {
+  box-shadow: 0 5px 5px #00000080;
+}
+
+.account_button {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 2px;
+}
+
+.account {
+  height: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background-color: #0000001a;
+  padding: 0 8px;
+  border-radius: 10px;
+}
+
+.buy_button {
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: 0 5px 10px #0000004d;
+  background-color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 19vh;
+}
