@@ -85,7 +85,7 @@ const ConnectBtn = (props: any) => {
                       <button
                         onClick={openChainModal}
                         type="button"
-                        className={styles.error_button}
+                        className={styles.connect_button}
                       >
                         Wrong network
                       </button>
