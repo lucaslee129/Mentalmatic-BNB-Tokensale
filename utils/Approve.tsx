@@ -3,36 +3,34 @@ import {
 } from '@wagmi/core';
 import { parseEther} from "viem";
 import usdtContractAbi from '../abi/USDTToken.json';
-import seedRoundMMTAbi from '../abi/SeedRoundMMT.json'
 import Notiflix from 'notiflix';
 require('dotenv').config();
 
 const usdtContractAddress = process.env.NEXT_PUBLIC_USDT_CONTRACT_ADDRESS;
 const vestContractAddress = process.env.NEXT_PUBLIC_CURRENT_CONTRACT;
 
-const BuyToken =  async(props: any) => {
-
-  console.log("GDFAFASDFAFDD")
+const Approve =  async(props: any) => {
   
   let buyerAddress: unknown;
   const { address, isConnected} = getAccount();
   if(isConnected) {
     buyerAddress = address;
   }
-  try{    
-    if(props.isApproved) {
-      console.log(props.coinAmount.toString())
-      const data = await writeContract({
-        address: `0x${vestContractAddress}`,
-        abi: seedRoundMMTAbi,
-        functionName : "buyToken",
-        args : [parseEther(props.coinAmount.toString())] 
-      })
-      await waitForTransaction({
-        hash: data.hash
-      })
-      Notiflix.Notify.success("USDT Transfer Success");
-    }
+  try{
+    const approveHash = await writeContract({
+      address: `0x${usdtContractAddress}`,
+      abi: usdtContractAbi,
+      functionName : "approve",
+      args : [`0x${vestContractAddress}`, parseEther("20000")]
+    })
+    console.log("approveHash>>>", approveHash);
+    await waitForTransaction({
+      hash: approveHash.hash
+    })
+    props.handleApproveChange(true);
+
+    Notiflix.Notify.success("Approved");
+    
   } catch(error: any) {
     const errorMessage = error.message;
     const rejectError = "User rejected the request.";
@@ -46,4 +44,4 @@ const BuyToken =  async(props: any) => {
   }  
 }
 
-export default BuyToken;
+export default Approve;

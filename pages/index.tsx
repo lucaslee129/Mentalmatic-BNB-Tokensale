@@ -13,6 +13,7 @@ const Home: NextPage = () => {
   const [saleStage, setSaleStage] = useState(0);
   const [isConnected, setIsConnected] = useState(false);
   const [roundBalance, setRoundBalance] = useState(0);
+  const [isApproved, setApproved] = useState(false);
 
   useEffect(() => 
     {
@@ -20,17 +21,47 @@ const Home: NextPage = () => {
         const amount: any = await getRoundBalance();
         setRoundBalance(amount);
         const saleStageTemp: number = Number(process.env.NEXT_PUBLIC_SALESTAGE);
+        let totalUsdt = 0;
+        let currentPrice = 0;
         setSaleStage(saleStageTemp);
-        console.log("Sale Stage>>>", saleStage);
-        // @desc Code for posting data to wix site. but don't work due to not published page
-        window.parent.postMessage(saleStageTemp, '*');
-        console.log(typeof saleStage);
-        console.log("saleStage>>>>>>", saleStage);
+
+        switch(saleStageTemp) {
+          case 1:
+            totalUsdt = 160000;
+            currentPrice = 0.002;
+            break;
+          case 2:
+            totalUsdt = 200000;
+            currentPrice = 0.004;
+            console.log("totalUsdt in Switch>>>>>>>>", totalUsdt);
+            break;
+          case 3:
+            totalUsdt = 560000;
+            currentPrice = 0.007;
+            break;
+          case 4:
+            totalUsdt = 300000;
+            currentPrice = 0.01;
+            break;
+          default:
+            totalUsdt = 0;
+            currentPrice = 0;
+            break;
+        }
+
+        console.log('currentPrice>>>', currentPrice * Number(amount) * (10 ** -18));
+        const spentUsdt = Number(totalUsdt) - Number((currentPrice * Number(amount) * (10 ** -18)).toFixed(0));
+        const data = {
+          saleStage : saleStageTemp,
+          spentUsdt : 1000
+        }
+        window.parent.postMessage(data, '*');
+        console.log('5');
       }
       if(isConnected) {
         func();
       }
-    }, [isConnected]);
+    }, [isConnected, coinAmount, tokenAmount]);
 
     const handleConnect = () => {
       setIsConnected(true);
@@ -116,15 +147,25 @@ const Home: NextPage = () => {
       Notiflix.Notify.warning("Your Token amount is overflow of this stage price scope");
     }
   }
+
+  const handleApproveChange = (isApprove : boolean) => {
+    setApproved(isApprove);
+  }
   
   return (
     <div className="box-sizing justify-center mx-auto w-1/4 mt-[65vh] ">
       <div className="flex justify-center gap-1">
-        <InputForm id="usdt" isConnected = {isConnected} value = {coinAmount} onChange = {handleCoinChage} />
-        <InputForm id="dolphin" isConnected={isConnected} value= {tokenAmount} onChange = {handleTokenChange} />
+        <InputForm id="usdt" isConnected = {isConnected} value = {coinAmount} onChange = {handleCoinChage} isApproved = {isApproved} />
+        <InputForm id="dolphin" isConnected={isConnected} value= {tokenAmount} onChange = {handleTokenChange} isApproved = {isApproved} />
       </div>
       <div className="flex justify-center gap-5">
-        <ConnectBtn handleConnect = {handleConnect} coinAmount={coinAmount} tokenAmount={tokenAmount} />
+        <ConnectBtn 
+          handleConnect = {handleConnect} 
+          coinAmount={coinAmount} 
+          tokenAmount={tokenAmount} 
+          handleApproveChange = {handleApproveChange}
+          isApproved = {isApproved}
+        />
       </div>
     </div>
   );

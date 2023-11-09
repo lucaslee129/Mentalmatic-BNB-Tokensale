@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import getTetherAmount from "../utils/getTetherAmount";
 import TetherIco from '../assets/usdt.png'
 import Notiflix from "notiflix";
+import Approve from "../utils/Approve";
 
 import BuyToken from "../utils/BuyToken";
 import { useEffect, useState } from "react";
@@ -12,6 +13,7 @@ const ConnectBtn = (props: any) => {
 
   const [tetherAmount, setTetherAmount] = useState("0");
   const [isConnected, setIsConnected] = useState(false);
+  const [btnText, setBtnText] = useState("Approve");
   
   useEffect(() => 
     {
@@ -19,14 +21,30 @@ const ConnectBtn = (props: any) => {
         const amount = await getTetherAmount();
         console.log("Amount>>>", amount);
         setTetherAmount(String(amount));
+        if(props.isApproved) {
+          setBtnText("Buy Tokens");
+        } else {
+          setBtnText("Approve");
+        }
       }
       if(isConnected) {
         func();
-      }      
-    }, [isConnected]);
+      }
+    }, [isConnected, props.isApproved]);
 
   const handleBuyToken = () => {
-    BuyToken(props);
+    console.log(props.isApproved)
+    if(props.isApproved) {
+      console.log("ere is Buy Tokens Function")
+      BuyToken(props);
+    } else  {
+      console.log("Here is Approve function");
+      Approve(props);
+    }
+  }
+
+  const handleApproveBtn = ()  => {
+    Approve(props);
   }
   
   try{
@@ -94,7 +112,7 @@ const ConnectBtn = (props: any) => {
 
                   return (
                     <div>
-                      <div style={{ display: "flex", gap: 12 }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
                         <button
                           onClick={openChainModal}
                           type="button"
@@ -152,13 +170,13 @@ const ConnectBtn = (props: any) => {
                           </div>
                         </button>
                       </div>
-                      <div className="flex justify-center item-center w-full ">
+                      <div className="flex justify-center gap-3 item-center w-full ">
                         <button
                             onClick={handleBuyToken}
                             type="button"
                             className={styles.buy_button}
                           >
-                            Buy Token
+                            {btnText}
                         </button>
                       </div>
                     </div>
