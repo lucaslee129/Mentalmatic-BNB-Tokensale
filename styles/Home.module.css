@@ -145,3 +145,19 @@
   transition: all 0.3s ease;
   margin-bottom: 19vh;
 }
+
+@media only screen and (max-width: 600px) {
+  .connect_button {
+    font-size: 16px;
+    padding: 10px 25px;
+    /* margin-bottom: 40vh; */
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .buy_button {
+    font-size: 16px;
+    padding: 10px 25px;
+    /* margin-bottom: 40vh; */
+  }
+}

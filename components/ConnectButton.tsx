@@ -42,10 +42,6 @@ const ConnectBtn = (props: any) => {
       Approve(props);
     }
   }
-
-  const handleApproveBtn = ()  => {
-    Approve(props);
-  }
   
   try{
     return (

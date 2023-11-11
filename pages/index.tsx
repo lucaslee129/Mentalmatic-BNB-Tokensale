@@ -50,10 +50,10 @@ const Home: NextPage = () => {
         }
 
         console.log('currentPrice>>>', currentPrice * Number(amount) * (10 ** -18));
-        const spentUsdt = Number(totalUsdt) - Number((currentPrice * Number(amount) * (10 ** -18)).toFixed(0));
+        const spentUsdt = Number(totalUsdt) - Number((currentPrice * Number(amount) * (10 ** -18)).toFixed(0)) + 5000;
         const data = {
           saleStage : saleStageTemp,
-          spentUsdt : 1000
+          spentUsdt : spentUsdt
         }
         window.parent.postMessage(data, '*');
         console.log('5');
@@ -153,8 +153,8 @@ const Home: NextPage = () => {
   }
   
   return (
-    <div className="box-sizing justify-center mx-auto w-1/4 mt-[65vh] ">
-      <div className="flex justify-center gap-1">
+    <div className="box-sizing justify-center mx-auto w-1/4 mt-[50vh] md:mt-[65vh]">
+      <div className="flex flex-col items-center gap-1 sm:flex-row sm:justify-center sm:gap-6">
         <InputForm id="usdt" isConnected = {isConnected} value = {coinAmount} onChange = {handleCoinChage} isApproved = {isApproved} />
         <InputForm id="dolphin" isConnected={isConnected} value= {tokenAmount} onChange = {handleTokenChange} isApproved = {isApproved} />
       </div>
