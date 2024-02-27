@@ -11,9 +11,7 @@ const usdtContractAddress = process.env.NEXT_PUBLIC_USDT_CONTRACT_ADDRESS;
 const vestContractAddress = process.env.NEXT_PUBLIC_CURRENT_CONTRACT;
 
 const BuyToken =  async(props: any) => {
-
-  console.log("GDFAFASDFAFDD")
-  
+    
   let buyerAddress: unknown;
   const { address, isConnected} = getAccount();
   if(isConnected) {

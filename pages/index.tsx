@@ -153,10 +153,10 @@ const Home: NextPage = () => {
   }
   
   return (
-    <div className="box-sizing justify-center mx-auto w-1/4 mt-[50vh] md:mt-[65vh]">
+    <div className="box-sizing justify-center mx-auto w-1/4 mt-[55vh] md:mt-[65vh]">
       <div className="flex flex-col items-center gap-1 sm:flex-row sm:justify-center sm:gap-6">
         <InputForm id="usdt" isConnected = {isConnected} value = {coinAmount} onChange = {handleCoinChage} isApproved = {isApproved} />
-        <InputForm id="dolphin" isConnected={isConnected} value= {tokenAmount} onChange = {handleTokenChange} isApproved = {isApproved} />
+        <InputForm id="dolphin" isConnected = {isConnected} value = {tokenAmount} onChange = {handleTokenChange} isApproved = {isApproved} />
       </div>
       <div className="flex justify-center gap-5">
         <ConnectBtn 
