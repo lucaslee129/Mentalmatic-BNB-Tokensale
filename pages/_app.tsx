@@ -16,7 +16,7 @@ import type { AppProps } from 'next/app';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [bsc, bscTestnet],
+  [bsc],
   [publicProvider()]
 );
 const connectors = connectorsForWallets([
