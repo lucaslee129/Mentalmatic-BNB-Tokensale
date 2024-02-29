@@ -10,13 +10,13 @@ import {
   ledgerWallet,
 } from '@rainbow-me/rainbowkit/wallets';
 import { configureChains } from 'wagmi';
-import { bsc } from 'wagmi/chains';
+import { bsc, bscTestnet } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import type { AppProps } from 'next/app';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [bsc],
+  [bsc, bscTestnet],
   [publicProvider()]
 );
 const connectors = connectorsForWallets([
